@@ -1,7 +1,26 @@
-import {Link} from "react-router-dom";
+import {json, Link} from "react-router-dom";
 import Title from "../../Title/Title.jsx";
+import {useState} from "react";
 
 const Signup = () => {
+    let [agree, setAgree] = useState(false);
+
+    let [name, setName] = useState("");
+    let [email, setEmail] = useState("");
+    let [phone, setPhone] = useState("");
+    let [password, setPassword] = useState("");
+    let [photo, setPhoto] = useState("");
+
+    let signUpFormSubmit = e =>{
+        e.preventDefault();
+
+        console.log(name)
+        console.log(email)
+        console.log(phone)
+        console.log(password)
+        console.log(photo)
+    }
+
     return (
         <section className="z-[0] pb-5">
             <Title props="Singup"/>
@@ -11,7 +30,7 @@ const Signup = () => {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Sign Up now
                         </h1>
-                        <form className="space-y-4 md:space-y-6" action="#">
+                        <form className="space-y-4 md:space-y-6" onSubmit={signUpFormSubmit}>
                             <div>
                                 <label
                                     htmlFor="name"
@@ -26,6 +45,7 @@ const Signup = () => {
                                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="enter your name"
                                     required
+                                    onChange={e => setName(e.target.value)}
                                 />
                             </div>
                             <div>
@@ -42,6 +62,7 @@ const Signup = () => {
                                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="enter email here"
                                     required
+                                    onChange={e => setEmail(e.target.value)}
                                 />
                             </div>
                             <div>
@@ -58,6 +79,7 @@ const Signup = () => {
                                     placeholder="enter your phone number"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required
+                                    onChange={e => setPhone(e.target.value)}
                                 />
                             </div>
                             <div>
@@ -74,6 +96,7 @@ const Signup = () => {
                                     placeholder="enter password here"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required
+                                    onChange={e => setPassword(e.target.value)}
                                 />
                             </div>
                             <div>
@@ -90,11 +113,34 @@ const Signup = () => {
                                     accept="image/png, image/jpg, image/jpeg"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required
+                                    onChange={e => setPhoto(e.target.value)}
                                 />
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-start">
+                                    <div className="flex items-center h-5">
+                                        <input
+                                            id="remember"
+                                            aria-describedby="remember"
+                                            type="checkbox"
+                                            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                                            onClick={() => setAgree(!agree)}
+                                        />
+                                    </div>
+                                    <div className="ml-3 text-sm">
+                                        <label
+                                            htmlFor="remember"
+                                            className="text-gray-500 dark:text-gray-300"
+                                        >
+                                            Agree to terms and conditions
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <button
                                 type="submit"
                                 className="w-full mt-40 text-black dark:text-white border bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                disabled={!agree}
                             >
                                 Sign Up
                             </button>

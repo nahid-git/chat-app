@@ -11,7 +11,7 @@ const Navbar = () => {
             title: "Login", path: "/login",
         },
         {
-            title: "Signup", path: "/signup",
+            title: "Sign Up", path: "/signup",
         },
     ]
     return (

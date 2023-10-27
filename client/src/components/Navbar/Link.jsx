@@ -5,7 +5,7 @@ const Link = ({path , title}) => {
             <NavLink
                 to={path}
                 className={({isActive}) =>
-                    isActive ? "font-bold  border-b-2 pb-1 border-black dark:border-slate-400": ""
+                    isActive ? "border-b-2 pb-1 border-black dark:border-slate-400": ""
                 }
             >
                 {title}
